@@ -147,8 +147,8 @@ function tensionColor(z) {
   if (z >= 2.5) return '#f43f5e';
   if (z >= 1.8) return '#fb7185';
   if (z >= 0.9) return '#fbbf24';
-  if (z >= 0.0) return '#34d399';
-  return '#38bdf8';
+  if (z >= 0.0) return '#3ecf82';
+  return '#a9c6e8';
 }
 
 function formatSigned(val, digits = 2, suffix = '') {
@@ -296,7 +296,7 @@ function getMetricSpec(biome, adjRecords, innerR, outerR) {
     const peak = Math.max(45, Math.ceil((d3.max(adjRecords, (d) => d.ffwi) || 50) / 10) * 10);
     const scale = d3.scaleLinear().domain([0, peak]).range([innerR, outerR]).clamp(true);
     const candidates = [
-      { value: 10, label: '10 Low', color: 'rgba(56, 189, 248, 0.25)', dash: '2 4' },
+      { value: 10, label: '10 Low', color: 'rgba(169, 198, 232, 0.25)', dash: '2 4' },
       { value: 20, label: '20 Elev', color: 'rgba(251, 191, 36, 0.32)', dash: '3 4' },
       { value: 35, label: '35 High', color: 'rgba(251, 113, 133, 0.42)', dash: '4 3' },
       { value: 50, label: '50 Red Flag', color: 'rgba(244, 63, 94, 0.55)', dash: '4 3' }
@@ -313,7 +313,7 @@ function getMetricSpec(biome, adjRecords, innerR, outerR) {
     const peak = Math.max(3.5, Math.ceil((d3.max(adjRecords, (d) => d.vpdKpa) || 3.5) * 2) / 2);
     const scale = d3.scaleLinear().domain([0, peak]).range([innerR, outerR]).clamp(true);
     const candidates = [
-      { value: 1.0, label: '1.0 kPa', color: 'rgba(56, 189, 248, 0.25)', dash: '2 4' },
+      { value: 1.0, label: '1.0 kPa', color: 'rgba(169, 198, 232, 0.25)', dash: '2 4' },
       { value: 2.0, label: '2.0 Dry', color: 'rgba(251, 191, 36, 0.35)', dash: '3 4' },
       { value: 3.0, label: '3.0 Arid', color: 'rgba(251, 113, 133, 0.45)', dash: '4 3' },
       { value: 4.0, label: '4.0 Extreme', color: 'rgba(244, 63, 94, 0.55)', dash: '4 3' }
@@ -336,7 +336,7 @@ function getMetricSpec(biome, adjRecords, innerR, outerR) {
     const rings = rawTicks.map((v) => ({
       value: Math.log1p(v),
       label: v === 0 ? '0 fires' : `${v} fires`,
-      color: v >= 100 ? 'rgba(244, 63, 94, 0.5)' : v >= 25 ? 'rgba(251, 191, 36, 0.35)' : 'rgba(56, 189, 248, 0.24)',
+      color: v >= 100 ? 'rgba(244, 63, 94, 0.5)' : v >= 25 ? 'rgba(251, 191, 36, 0.35)' : 'rgba(169, 198, 232, 0.24)',
       dash: v >= 25 ? '4 3' : '2 4'
     }));
     return {
@@ -354,8 +354,8 @@ function getMetricSpec(biome, adjRecords, innerR, outerR) {
     valueOf: (d) => d.zScore,
     scale,
     rings: [
-      { value: -1.0, label: '-1σ Wet', color: 'rgba(56, 189, 248, 0.25)', dash: '2 4' },
-      { value: 0.0, label: '0σ Norm', color: 'rgba(52, 211, 153, 0.45)', dash: '4 3' },
+      { value: -1.0, label: '-1σ Wet', color: 'rgba(169, 198, 232, 0.25)', dash: '2 4' },
+      { value: 0.0, label: '0σ Norm', color: 'rgba(62, 207, 130, 0.45)', dash: '4 3' },
       { value: 1.0, label: '+1σ Elev', color: 'rgba(251, 191, 36, 0.38)', dash: '3 4' },
       { value: 2.0, label: '+2σ Severe', color: 'rgba(251, 113, 133, 0.5)', dash: '4 3' },
       { value: 3.0, label: '+3σ+ Extreme', color: 'rgba(244, 63, 94, 0.58)', dash: '4 3' }
@@ -454,7 +454,7 @@ function renderSpiral() {
     g.append('text')
       .attr('x', cx + Math.cos(labelAngle) * r + 4)
       .attr('y', cy + Math.sin(labelAngle) * r - 3)
-      .attr('fill', '#e2e8f0')
+      .attr('fill', '#f0f7ee')
       .attr('font-size', '9.5px')
       .attr('font-weight', '700')
       .attr('font-family', 'ui-monospace, SFMono-Regular, Menlo, monospace')
@@ -477,7 +477,7 @@ function renderSpiral() {
       .attr('x', cx + Math.cos(a) * (outerR + 22))
       .attr('y', cy + Math.sin(a) * (outerR + 22) + 3.5)
       .attr('text-anchor', 'middle')
-      .attr('fill', '#cbd5e1')
+      .attr('fill', '#a3bfa5')
       .attr('font-size', '11px')
       .attr('font-weight', '700')
       .text(name);
@@ -664,9 +664,9 @@ function renderCenterGlobe() {
     .attr('id', 'ocean-grad')
     .attr('cx', '35%')
     .attr('cy', '30%');
-  oceanGrad.append('stop').attr('offset', '0%').attr('stop-color', '#102a4e');
-  oceanGrad.append('stop').attr('offset', '75%').attr('stop-color', '#061329');
-  oceanGrad.append('stop').attr('offset', '100%').attr('stop-color', '#020714');
+  oceanGrad.append('stop').attr('offset', '0%').attr('stop-color', '#0b2e1c');
+  oceanGrad.append('stop').attr('offset', '75%').attr('stop-color', '#071a0f');
+  oceanGrad.append('stop').attr('offset', '100%').attr('stop-color', '#020805');
 
   const projection = d3.geoOrthographic()
     .scale(radius)
@@ -681,7 +681,7 @@ function renderCenterGlobe() {
     .datum({ type: 'Sphere' })
     .attr('d', path)
     .attr('fill', 'url(#ocean-grad)')
-    .attr('stroke', 'rgba(56, 189, 248, 0.35)')
+    .attr('stroke', 'rgba(62, 207, 130, 0.35)')
     .attr('stroke-width', 1.2);
 
   // Graticule
@@ -691,7 +691,7 @@ function renderCenterGlobe() {
     .attr('class', 'globe-graticule')
     .attr('d', path)
     .attr('fill', 'none')
-    .attr('stroke', 'rgba(56, 189, 248, 0.14)')
+    .attr('stroke', 'rgba(62, 207, 130, 0.14)')
     .attr('stroke-width', 0.65);
 
   // Landmasses
@@ -701,8 +701,8 @@ function renderCenterGlobe() {
     .join('path')
     .attr('class', 'country globe-geo')
     .attr('d', path)
-    .attr('fill', '#162642')
-    .attr('stroke', 'rgba(148, 163, 184, 0.3)')
+    .attr('fill', '#1d5a3a')
+    .attr('stroke', 'rgba(163, 191, 165, 0.3)')
     .attr('stroke-width', 0.55);
 
   // Active Biome Bounding Box Polygon
@@ -846,7 +846,7 @@ function renderScatterPlot() {
   svg.append('line')
     .attr('x1', x(0)).attr('y1', margin.top)
     .attr('x2', x(0)).attr('y2', 195 - margin.bottom)
-    .attr('stroke', 'rgba(52, 211, 153, 0.45)')
+    .attr('stroke', 'rgba(62, 207, 130, 0.45)')
     .attr('stroke-dasharray', '3 3');
 
   svg.append('line')
@@ -857,7 +857,7 @@ function renderScatterPlot() {
 
   svg.append('text')
     .attr('x', x(0) + 3).attr('y', margin.top + 9)
-    .attr('fill', '#34d399').attr('font-size', '9px').text('0σ Norm');
+    .attr('fill', '#3ecf82').attr('font-size', '9px').text('0σ Norm');
 
   svg.append('text')
     .attr('x', x(2.0) + 3).attr('y', margin.top + 9)
@@ -866,13 +866,13 @@ function renderScatterPlot() {
   svg.append('g')
     .attr('transform', `translate(0,${195 - margin.bottom})`)
     .call(d3.axisBottom(x).ticks(5).tickFormat((d) => `${d >= 0 ? '+' : ''}${d}σ`))
-    .attr('color', '#94a3b8')
+    .attr('color', '#a3bfa5')
     .attr('font-size', '9.5px');
 
   svg.append('g')
     .attr('transform', `translate(${margin.left},0)`)
     .call(d3.axisLeft(y).ticks(4))
-    .attr('color', '#94a3b8')
+    .attr('color', '#a3bfa5')
     .attr('font-size', '9.5px');
 
   svg.selectAll('circle.scatter-dot')
@@ -976,7 +976,7 @@ function updateHudAndSidebar() {
   const globeBox = document.querySelector('.center-globe-box');
   if (globeBox) {
     const col = tensionColor(adj.zScore);
-    globeBox.style.borderColor = adj.zScore >= 1.5 ? col : 'rgba(56, 189, 248, 0.45)';
+    globeBox.style.borderColor = adj.zScore >= 1.5 ? col : 'rgba(62, 207, 130, 0.45)';
   }
 
   // Highlight active row in table
