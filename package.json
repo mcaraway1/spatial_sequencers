@@ -1,0 +1,1 @@
+{"description":"Spatial Sequencers - NASA Space Apps 2026 (Seattle). Root tooling only; the projects live in pyrosync/ and space-jukebox/.","name":"spatial-sequencers","private":true,"scripts":{"preview":"node preview.js","setup":"npm --prefix pyrosync install --omit=dev --no-audit --no-fund"},"version":"1.0.0"}
